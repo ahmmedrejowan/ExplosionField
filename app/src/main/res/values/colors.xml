@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design Colors -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Light Theme Colors -->
+    <color name="background_light">#F5F5F5</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="text_primary_light">#212121</color>
+    <color name="text_secondary_light">#757575</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="background_dark">#121212</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#B3B3B3</color>
+
+    <!-- Button Colors (work in both themes) -->
+    <color name="btn_default">#2196F3</color>
+    <color name="btn_gentle">#4CAF50</color>
+    <color name="btn_aggressive">#F44336</color>
+    <color name="btn_dust">#9C27B0</color>
+    <color name="btn_chunky">#FF9800</color>
+    <color name="btn_scatter">#00BCD4</color>
+    <color name="btn_implode">#673AB7</color>
+    <color name="btn_float">#03A9F4</color>
+    <color name="btn_grayscale">#607D8B</color>
+    <color name="btn_random">#E91E63</color>
+    <color name="btn_reset">#4CAF50</color>
+    <color name="btn_performance">#FF9800</color>
+
+    <!-- Card Colors -->
+    <color name="card_1">#FF5722</color>
+    <color name="card_2">#4CAF50</color>
+    <color name="card_3">#2196F3</color>
+    <color name="card_4">#FFC107</color>
+
+    <!-- Icon Card Colors -->
+    <color name="icon_card_1">#FF6F00</color>
+    <color name="icon_card_2">#5E35B1</color>
+    <color name="icon_card_3">#00897B</color>
+    <color name="icon_card_4">#E91E63</color>
+
+    <!-- Float Card Colors -->
+    <color name="float_card_1">#42A5F5</color>
+    <color name="float_card_2">#AB47BC</color>
+    <color name="float_card_3">#FF7043</color>
+    <color name="float_card_4">#26C6DA</color>
+
+    <!-- Fountain Style Colors -->
+    <color name="fountain_icon_1">#D32F2F</color>
+    <color name="fountain_icon_2">#1976D2</color>
+    <color name="fountain_icon_3">#F57C00</color>
+    <color name="fountain_icon_4">#388E3C</color>
+    <color name="fountain_card_1">#FFB300</color>
+    <color name="fountain_card_2">#E64A19</color>
+    <color name="fountain_card_3">#7B1FA2</color>
+    <color name="fountain_card_4">#303F9F</color>
+
+    <!-- Scatter Style Colors -->
+    <color name="scatter_icon_1">#FF6F00</color>
+    <color name="scatter_icon_2">#C2185B</color>
+    <color name="scatter_icon_3">#00796B</color>
+    <color name="scatter_icon_4">#5D4037</color>
+    <color name="scatter_card_1">#00ACC1</color>
+    <color name="scatter_card_2">#8E24AA</color>
+    <color name="scatter_card_3">#D81B60</color>
+    <color name="scatter_card_4">#43A047</color>
+
+    <!-- Implode Style Colors -->
+    <color name="implode_icon_1">#6A1B9A</color>
+    <color name="implode_icon_2">#0277BD</color>
+    <color name="implode_icon_3">#C62828</color>
+    <color name="implode_icon_4">#2E7D32</color>
+    <color name="implode_card_1">#EF6C00</color>
+    <color name="implode_card_2">#1565C0</color>
+    <color name="implode_card_3">#AD1457</color>
+    <color name="implode_card_4">#558B2F</color>
+
+    <!-- Float Up Style Colors -->
+    <color name="floatup_icon_1">#42A5F5</color>
+    <color name="floatup_icon_2">#AB47BC</color>
+    <color name="floatup_icon_3">#FF7043</color>
+    <color name="floatup_icon_4">#26C6DA</color>
+    <color name="floatup_card_1">#5C6BC0</color>
+    <color name="floatup_card_2">#EC407A</color>
+    <color name="floatup_card_3">#FFA726</color>
+    <color name="floatup_card_4">#66BB6A</color>
+</resources>

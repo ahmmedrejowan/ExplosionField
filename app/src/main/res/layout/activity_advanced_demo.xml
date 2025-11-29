@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🔬 Advanced Demos"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:gravity="center"
+                android:padding="16dp"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Duration Variations -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⏱️ Duration Variations"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <Button
+                    android:id="@+id/btnSuperFast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚡ Super Fast (500ms)"
+                    android:backgroundTint="@color/btn_aggressive"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnSuperSlow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🐌 Super Slow (3000ms)"
+                    android:backgroundTint="@color/btn_gentle"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Particle Count Variations -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚙️ Particle Variations"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <Button
+                    android:id="@+id/btnFewParticles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🧱 Few Large Particles"
+                    android:backgroundTint="@color/btn_chunky"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnManyParticles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="✨ Many Tiny Particles"
+                    android:backgroundTint="@color/btn_dust"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Combined Effects -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🎭 Combined Effects"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <Button
+                    android:id="@+id/btnScatterGrayscale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🌟 Scatter + Grayscale"
+                    android:backgroundTint="@color/btn_grayscale"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnImplodeRandom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🌀 Implode + Random Colors"
+                    android:backgroundTint="@color/btn_implode"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnFloatTinted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎈 Float + Red Tint"
+                    android:backgroundTint="@color/btn_random"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Special Options -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🎪 Special Options"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <Button
+                    android:id="@+id/btnNoShake"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🚫 No Shake Effect"
+                    android:backgroundTint="#795548"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnWithHaptic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📳 With Haptic Feedback"
+                    android:backgroundTint="@color/btn_scatter"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Ultimate Demo -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#FF6B6B">
+
+            <Button
+                android:id="@+id/btnUltimate"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="💣 ULTIMATE EXPLOSION 💣"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:backgroundTint="#D32F2F"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="← Back to Main"
+            android:backgroundTint="@color/btn_reset"/>
+
+    </LinearLayout>
+
+</ScrollView>
