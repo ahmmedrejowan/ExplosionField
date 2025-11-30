@@ -209,18 +209,11 @@ class FallPhysics : PhysicsEngine {
  */
 class VortexPhysics : PhysicsEngine {
 
-    companion object {
-        private const val TAG = "VortexPhysics"
-        private var particleCount = 0
-    }
-
     override fun generateParticle(
         random: Random,
         bounds: Rect,
         config: ExplosionConfig
     ): Particle {
-        particleCount++
-
         val baseRadius = getParticleRadius(random, config.particleSize)
         val baseCx = bounds.centerX() + (15.dpF() * (random.nextFloat() - 0.5f))
         val baseCy = bounds.centerY() + (15.dpF() * (random.nextFloat() - 0.5f))
@@ -252,11 +245,6 @@ class VortexPhysics : PhysicsEngine {
 
         val life = 1.4f / 18f * random.nextFloat()
         val overflow = 0.45f * random.nextFloat()
-
-        if (particleCount <= 5) {
-            Log.d(TAG, "VORTEX Particle #$particleCount: startAngle=${Math.toDegrees(startAngle.toDouble()).toInt()}°")
-            Log.d(TAG, "  rotation=${Math.toDegrees(rotationAmount.toDouble()).toInt()}°, finalRadius=$finalRadius")
-        }
 
         return Particle(
             color = 0,

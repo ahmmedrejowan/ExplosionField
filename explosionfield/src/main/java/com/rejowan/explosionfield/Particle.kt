@@ -1,6 +1,5 @@
 package com.rejowan.explosionfield
 
-import android.util.Log
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -37,11 +36,6 @@ data class Particle(
     var radius: Float = 0f,
     var alpha: Float = 1f
 ) {
-
-    companion object {
-        private const val TAG = "Particle"
-        private var vortexLogCount = 0
-    }
 
     /**
      * Updates the particle's position, size, and alpha based on animation progress.
@@ -96,12 +90,6 @@ data class Particle(
 
                 cx = baseCx + (cos(currentAngle) * currentRadius)
                 cy = baseCy + (sin(currentAngle) * currentRadius)
-
-                if (vortexLogCount < 5 && factor > 0.01f && factor < 0.02f) {
-                    vortexLogCount++
-                    Log.d(TAG, "VORTEX: angle=${Math.toDegrees(currentAngle.toDouble()).toInt()}°, radius=$currentRadius")
-                    Log.d(TAG, "  pos: ($cx, $cy) from center ($baseCx, $baseCy)")
-                }
             }
             // FOUNTAIN: Parabolic motion (original behavior)
             else -> {
