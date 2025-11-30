@@ -1,5 +1,9 @@
 package com.rejowan.explosionfield
 
+import android.util.Log
+import kotlin.math.cos
+import kotlin.math.sin
+
 /**
  * Represents a single particle in an explosion animation.
  *
@@ -34,6 +38,11 @@ data class Particle(
     var alpha: Float = 1f
 ) {
 
+    companion object {
+        private const val TAG = "Particle"
+        private var vortexLogCount = 0
+    }
+
     /**
      * Updates the particle's position, size, and alpha based on animation progress.
      *
@@ -63,17 +72,47 @@ data class Particle(
             1f
         }
 
-        // Calculate horizontal distance traveled
-        val distance = bottom * scaledProgress
+        // Update position based on explosion style
+        when {
+            // SCATTER: Linear radial motion (mag=0, neg=0)
+            mag == 0f && neg == 0f -> {
+                val distance = bottom * scaledProgress
+                cx = baseCx + distance
+                cy = baseCy - (top * scaledProgress)
+            }
+            // FALL: Downward motion with gravity (neg=0, mag>0)
+            neg == 0f && mag > 0f -> {
+                val distance = bottom * scaledProgress
+                cx = baseCx + distance
+                // cy = baseCy + (initial_velocity * time + 0.5 * gravity * time²)
+                val fallDistance = (top * scaledProgress) + (0.5f * mag * scaledProgress * scaledProgress)
+                cy = baseCy + fallDistance
+            }
+            // VORTEX: Spiral motion (neg=-1.0)
+            neg == -1.0f -> {
+                // bottom = start angle, top = rotation amount, mag = final radius
+                val currentAngle = bottom + (top * adjustedProgress)
+                val currentRadius = mag * scaledProgress
 
-        // Update horizontal position (linear motion)
-        cx = baseCx + distance
+                cx = baseCx + (cos(currentAngle) * currentRadius)
+                cy = baseCy + (sin(currentAngle) * currentRadius)
 
-        // Update vertical position (parabolic motion with gravity)
-        // Optimized: removed Math.pow(), using simple multiplication
-        cy = baseCy - (neg * distance * distance) - (distance * mag)
+                if (vortexLogCount < 5 && factor > 0.01f && factor < 0.02f) {
+                    vortexLogCount++
+                    Log.d(TAG, "VORTEX: angle=${Math.toDegrees(currentAngle.toDouble()).toInt()}°, radius=$currentRadius")
+                    Log.d(TAG, "  pos: ($cx, $cy) from center ($baseCx, $baseCy)")
+                }
+            }
+            // FOUNTAIN: Parabolic motion (original behavior)
+            else -> {
+                val distance = bottom * scaledProgress
+                cx = baseCx + distance
+                cy = baseCy - (neg * distance * distance) - (distance * mag)
+            }
+        }
 
-        // Update particle size (grows over time)
-        radius = baseRadius * scaledProgress
+        // Update particle size - start at full size, don't grow from 0
+        // For scatter effect, particles should be visible immediately
+        radius = baseRadius
     }
 }

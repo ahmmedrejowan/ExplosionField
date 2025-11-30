@@ -1,6 +1,7 @@
 package com.rejowan.explosionfield
 
 import android.graphics.Rect
+import android.util.Log
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
@@ -32,8 +33,8 @@ object PhysicsEngineFactory {
         return when (style) {
             ExplosionConfig.ExplosionStyle.FOUNTAIN -> FountainPhysics()
             ExplosionConfig.ExplosionStyle.SCATTER -> ScatterPhysics()
-            ExplosionConfig.ExplosionStyle.IMPLODE -> ImplodePhysics()
-            ExplosionConfig.ExplosionStyle.FLOAT_UP -> FloatUpPhysics()
+            ExplosionConfig.ExplosionStyle.FALL -> FallPhysics()
+            ExplosionConfig.ExplosionStyle.VORTEX -> VortexPhysics()
         }
     }
 }
@@ -92,7 +93,8 @@ class FountainPhysics : PhysicsEngine {
 }
 
 /**
- * Scatter-style physics - particles explode radially outward.
+ * Scatter-style physics - particles explode radially outward in all 360° directions.
+ * Strong radial burst with particles shooting outward from the center.
  */
 class ScatterPhysics : PhysicsEngine {
 
@@ -102,22 +104,36 @@ class ScatterPhysics : PhysicsEngine {
         config: ExplosionConfig
     ): Particle {
         val baseRadius = getParticleRadius(random, config.particleSize)
+
+        // Start exactly from center (no random offset)
         val baseCx = bounds.centerX().toFloat()
         val baseCy = bounds.centerY().toFloat()
 
-        // Random angle for radial explosion
+        // Random angle for 360° radial explosion
         val angle = random.nextFloat() * Math.PI.toFloat() * 2f
-        val distance = random.nextFloat() * bounds.width() * 0.7f
 
-        // Convert polar to cartesian
-        val bottom = cos(angle) * distance
-        val top = sin(angle) * distance * 0.5f  // Less vertical movement
+        // Variable speed - some particles shoot far, some stay close
+        val speed = 0.6f + random.nextFloat() * 1.0f
 
-        val mag = 0.5f + random.nextFloat() * 0.5f
-        val neg = -0.001f  // Minimal gravity
+        // Max distance particles travel (accounting for scaledProgress * endValue = 1.4)
+        // We want particles to spread about 0.8x the bounds width/height
+        val endValue = 1.4f
+        val maxDist = (bounds.width().coerceAtLeast(bounds.height()) * 0.8f) / endValue
 
-        val life = 1.4f / 15f * random.nextFloat()
-        val overflow = 0.3f * random.nextFloat()
+        // For radial scatter, we need independent X and Y motion components
+        // bottom controls horizontal: cx = baseCx + (bottom * scaledProgress)
+        val bottom = cos(angle) * maxDist * speed
+
+        // top controls vertical: cy = baseCy - (top * scaledProgress)
+        // Negative top means upward motion
+        val top = -sin(angle) * maxDist * speed
+
+        // No gravity or parabolic motion for scatter - pure linear radial motion
+        val mag = 0f
+        val neg = 0f
+
+        val life = 1.4f / 25f * random.nextFloat()
+        val overflow = 0.35f * random.nextFloat()
 
         return Particle(
             color = 0,
@@ -135,53 +151,10 @@ class ScatterPhysics : PhysicsEngine {
 }
 
 /**
- * Implode-style physics - particles move inward (reverse explosion).
+ * Fall/Shatter-style physics - particles fall downward like rain or shattered glass.
+ * Opposite of fountain - particles break apart and fall down with gravity.
  */
-class ImplodePhysics : PhysicsEngine {
-
-    override fun generateParticle(
-        random: Random,
-        bounds: Rect,
-        config: ExplosionConfig
-    ): Particle {
-        val baseRadius = getParticleRadius(random, config.particleSize)
-
-        // Start from expanded area
-        val expandRadius = bounds.width() * 0.8f
-        val angle = random.nextFloat() * Math.PI.toFloat() * 2f
-
-        val baseCx = bounds.centerX() + cos(angle) * expandRadius
-        val baseCy = bounds.centerY() + sin(angle) * expandRadius
-
-        // Negative bottom for inward movement
-        val bottom = -(0.8f + random.nextFloat() * 0.4f)
-        val top = (random.nextFloat() - 0.5f) * 0.3f
-
-        val mag = 0.2f
-        val neg = 0.0001f  // Slight curve
-
-        val life = 1.4f / 20f * random.nextFloat()
-        val overflow = 0.5f * random.nextFloat()
-
-        return Particle(
-            color = 0,
-            baseCx = baseCx,
-            baseCy = baseCy,
-            baseRadius = baseRadius,
-            top = top,
-            bottom = bottom,
-            mag = mag,
-            neg = neg,
-            life = life,
-            overflow = overflow
-        )
-    }
-}
-
-/**
- * Float-up style physics - particles gently float upward like bubbles or smoke.
- */
-class FloatUpPhysics : PhysicsEngine {
+class FallPhysics : PhysicsEngine {
 
     override fun generateParticle(
         random: Random,
@@ -192,15 +165,98 @@ class FloatUpPhysics : PhysicsEngine {
         val baseCx = bounds.centerX() + (30.dpF() * (random.nextFloat() - 0.5f))
         val baseCy = bounds.centerY() + (20.dpF() * (random.nextFloat() - 0.5f))
 
-        // Gentle upward float with slight horizontal drift
-        val bottom = (random.nextFloat() - 0.5f) * 0.3f  // Minimal horizontal
-        val top = bounds.height() * (0.5f + random.nextFloat() * 0.3f)  // Upward
+        // For FALL: particles should fall straight down with gravity
+        // Using similar approach to SCATTER with independent X/Y motion
 
-        val mag = 1.5f + random.nextFloat() * 0.5f  // Gentle upward velocity
-        val neg = 0.0001f  // Almost no gravity
+        // Slight horizontal drift (left or right)
+        val endValue = 1.4f
+        val horizontalDrift = (random.nextFloat() - 0.5f) * bounds.width() * 0.3f / endValue
+        val bottom = horizontalDrift
 
-        val life = 1.4f / 12f * random.nextFloat()
-        val overflow = 0.6f * random.nextFloat()  // Longer fade
+        // Downward motion with acceleration (gravity)
+        // Particles accelerate as they fall: distance = initial_velocity * t + 0.5 * gravity * t²
+        val initialDownwardVelocity = bounds.height() * (0.3f + random.nextFloat() * 0.4f) / endValue
+        val gravityAcceleration = bounds.height() * 0.3f / endValue
+
+        // top will be used for downward motion (positive top = fall down)
+        val top = initialDownwardVelocity
+
+        // mag is gravity acceleration, neg=0 marks this as FALL physics
+        val mag = gravityAcceleration
+        val neg = 0f
+
+        val life = 1.4f / 15f * random.nextFloat()
+        val overflow = 0.35f * random.nextFloat()
+
+        return Particle(
+            color = 0,
+            baseCx = baseCx,
+            baseCy = baseCy,
+            baseRadius = baseRadius,
+            top = top,
+            bottom = bottom,
+            mag = mag,
+            neg = neg,
+            life = life,
+            overflow = overflow
+        )
+    }
+}
+
+/**
+ * Vortex/Spiral-style physics - particles spiral outward in a rotating motion.
+ * Creates a vortex or tornado-like effect with particles rotating as they expand.
+ */
+class VortexPhysics : PhysicsEngine {
+
+    companion object {
+        private const val TAG = "VortexPhysics"
+        private var particleCount = 0
+    }
+
+    override fun generateParticle(
+        random: Random,
+        bounds: Rect,
+        config: ExplosionConfig
+    ): Particle {
+        particleCount++
+
+        val baseRadius = getParticleRadius(random, config.particleSize)
+        val baseCx = bounds.centerX() + (15.dpF() * (random.nextFloat() - 0.5f))
+        val baseCy = bounds.centerY() + (15.dpF() * (random.nextFloat() - 0.5f))
+
+        // For VORTEX: particles spiral outward with rotation
+        // We'll encode: initial angle in bottom, rotation amount in top, max radius in mag
+
+        // Starting angle (0 to 2π)
+        val startAngle = random.nextFloat() * Math.PI.toFloat() * 2f
+
+        // Rotation during animation (2-4 full rotations)
+        val rotationAmount = (2f + random.nextFloat() * 2f) * Math.PI.toFloat() * 2f
+
+        // Max distance to spiral out
+        val endValue = 1.4f
+        val maxRadius = (bounds.width().coerceAtLeast(bounds.height()) * 0.6f) / endValue
+        val spiralSpeed = 0.7f + random.nextFloat() * 0.6f
+        val finalRadius = maxRadius * spiralSpeed
+
+        // Encode vortex parameters:
+        // bottom = starting angle
+        // top = total rotation amount
+        // mag = final radius
+        // neg = -1.0 to mark as VORTEX physics
+        val bottom = startAngle
+        val top = rotationAmount
+        val mag = finalRadius
+        val neg = -1.0f  // Special marker for VORTEX physics
+
+        val life = 1.4f / 18f * random.nextFloat()
+        val overflow = 0.45f * random.nextFloat()
+
+        if (particleCount <= 5) {
+            Log.d(TAG, "VORTEX Particle #$particleCount: startAngle=${Math.toDegrees(startAngle.toDouble()).toInt()}°")
+            Log.d(TAG, "  rotation=${Math.toDegrees(rotationAmount.toDouble()).toInt()}°, finalRadius=$finalRadius")
+        }
 
         return Particle(
             color = 0,

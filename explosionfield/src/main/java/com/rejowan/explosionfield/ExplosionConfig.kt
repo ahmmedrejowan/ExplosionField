@@ -106,17 +106,17 @@ data class ExplosionConfig(
      * Explosion animation styles with different physics behaviors.
      */
     enum class ExplosionStyle {
-        /** Original behavior - particles shoot up then fall down */
+        /** Original behavior - particles shoot up then fall down in parabolic arc */
         FOUNTAIN,
 
-        /** Particles scatter radially outward */
+        /** Particles explode radially outward in all 360° directions */
         SCATTER,
 
-        /** Particles move inward (reverse explosion) */
-        IMPLODE,
+        /** Particles fall downward like rain or shattered glass */
+        FALL,
 
-        /** Particles gently float upward */
-        FLOAT_UP
+        /** Particles spiral outward in a rotating vortex motion */
+        VORTEX
     }
 
     companion object {

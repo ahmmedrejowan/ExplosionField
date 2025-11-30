@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
 import kotlin.random.Random
 
@@ -37,6 +38,11 @@ class ExplosionAnimator(
         setFloatValues(0f, endValue)
         interpolator = config.interpolator
         duration = config.duration
+
+        // Add update listener to trigger redraws as animation progresses
+        addUpdateListener {
+            container.invalidate()
+        }
     }
 
     /**
@@ -100,17 +106,18 @@ class ExplosionAnimator(
             }
         }
 
-        // Request next frame
-        container.invalidate()
+        // Animation is running
         return true
     }
 
     override fun start() {
         super.start()
-        container.invalidate(bounds)
+        // Initial invalidate is handled by update listener
     }
 
     companion object {
+        private const val TAG = "ExplosionAnimator"
+
         /** Default animation duration in milliseconds */
         const val DEFAULT_DURATION = 1024L
     }

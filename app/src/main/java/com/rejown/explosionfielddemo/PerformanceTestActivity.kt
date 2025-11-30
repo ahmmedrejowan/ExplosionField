@@ -72,7 +72,7 @@ class PerformanceTestActivity : AppCompatActivity() {
     }
 
     private fun explodeSingleView(view: View) {
-        explosionField.explode(view, ExplosionConfig(style = listOf(ExplosionConfig.ExplosionStyle.FOUNTAIN, ExplosionConfig.ExplosionStyle.SCATTER, ExplosionConfig.ExplosionStyle.IMPLODE, ExplosionConfig.ExplosionStyle.FLOAT_UP).random(), colorMode = ExplosionConfig.ColorMode.ORIGINAL, particleCount = ExplosionConfig.ParticleCount.MEDIUM))
+        explosionField.explode(view, ExplosionConfig(style = listOf(ExplosionConfig.ExplosionStyle.FOUNTAIN, ExplosionConfig.ExplosionStyle.SCATTER, ExplosionConfig.ExplosionStyle.FALL, ExplosionConfig.ExplosionStyle.VORTEX).random(), colorMode = ExplosionConfig.ColorMode.ORIGINAL, particleCount = ExplosionConfig.ParticleCount.MEDIUM))
     }
 
     private fun explodeAllViews() {
@@ -96,7 +96,7 @@ class PerformanceTestActivity : AppCompatActivity() {
         repeat(count) {
             val randomIndex = Random.nextInt(binding.gridLayout.childCount)
             val view = binding.gridLayout.getChildAt(randomIndex)
-            handler.postDelayed({ explosionField.explode(view, ExplosionConfig(style = listOf(ExplosionConfig.ExplosionStyle.FOUNTAIN, ExplosionConfig.ExplosionStyle.SCATTER, ExplosionConfig.ExplosionStyle.IMPLODE, ExplosionConfig.ExplosionStyle.FLOAT_UP).random(), colorMode = listOf(ExplosionConfig.ColorMode.ORIGINAL, ExplosionConfig.ColorMode.GRAYSCALE, ExplosionConfig.ColorMode.RANDOM).random(), particleCount = ExplosionConfig.ParticleCount.MEDIUM)) }, (it * 150).toLong())
+            handler.postDelayed({ explosionField.explode(view, ExplosionConfig(style = listOf(ExplosionConfig.ExplosionStyle.FOUNTAIN, ExplosionConfig.ExplosionStyle.SCATTER, ExplosionConfig.ExplosionStyle.FALL, ExplosionConfig.ExplosionStyle.VORTEX).random(), colorMode = listOf(ExplosionConfig.ColorMode.ORIGINAL, ExplosionConfig.ColorMode.GRAYSCALE, ExplosionConfig.ColorMode.RANDOM).random(), particleCount = ExplosionConfig.ParticleCount.MEDIUM)) }, (it * 150).toLong())
         }
     }
 
