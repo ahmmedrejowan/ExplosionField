@@ -54,9 +54,27 @@ This is my tribute to a library that inspired countless developers, now brought 
 | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/demo_1.gif) | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/demo_2.gif) |
 
 
-| Shots                                                                                          | Shots                                                                                          | 
+| Shots                                                                                          | Shots                                                                                          |
 |------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_1.jpg) | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_2.jpg) | 
+| ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_1.jpg) | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_2.jpg) |
+
+### Run Locally
+
+Want to test the library locally? Follow these steps:
+
+**1. Clone the Repository:**
+```bash
+git clone https://github.com/ahmmedrejowan/ExplosionField.git
+cd ExplosionField
+```
+
+**2. Open in Android Studio**
+
+**3. Build the Project**
+
+**4. Run the Demo App**
+
+**5. Test Different Features**
 
 ## Prerequisites
 

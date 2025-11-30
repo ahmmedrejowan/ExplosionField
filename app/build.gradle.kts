@@ -21,8 +21,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -40,11 +39,11 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":explosionfield"))
-
-    // JitPack dependency format
+    // Official JitPack release v1.0.0
     // implementation("com.github.ahmmedrejowan:ExplosionField:1.0.0")
+
+    // Local project dependency (for development)
+    implementation(project(":explosionfield"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
