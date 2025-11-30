@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
     android:fillViewport="true"
     android:background="?android:attr/windowBackground">
 
@@ -17,124 +17,35 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             app:cardElevation="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
             app:cardCornerRadius="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="20dp"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💥 ExplosionField Demo"
-                    android:textSize="28sp"
+                    android:text="ExplosionField Demo"
+                    android:textSize="26sp"
                     android:textStyle="bold"
                     android:textColor="?android:attr/textColorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tap any view to explode it!"
+                    android:text="Tap any view to explode it"
                     android:textSize="14sp"
                     android:textColor="?android:attr/textColorSecondary"
                     android:layout_marginTop="4dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="12dp">
-
-                    <Button
-                        android:id="@+id/btnAdvancedDemo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Advanced"
-                        android:layout_marginEnd="8dp"/>
-
-                    <Button
-                        android:id="@+id/btnPerformanceTest"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Performance"
-                        android:backgroundTint="@color/btn_performance"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Presets Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="📦 Preset Configurations"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="?android:attr/textColorPrimary"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="8dp"/>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <Button
-                    android:id="@+id/btnDefault"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="⚡ Default Explosion"
-                    android:backgroundTint="@color/btn_default"
-                    android:layout_marginBottom="8dp"/>
-
-                <Button
-                    android:id="@+id/btnGentle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="🌸 Gentle Explosion"
-                    android:backgroundTint="@color/btn_gentle"
-                    android:layout_marginBottom="8dp"/>
-
-                <Button
-                    android:id="@+id/btnAggressive"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="💥 Aggressive Explosion"
-                    android:backgroundTint="@color/btn_aggressive"
-                    android:layout_marginBottom="8dp"/>
-
-                <Button
-                    android:id="@+id/btnDust"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="✨ Dust Explosion"
-                    android:backgroundTint="@color/btn_dust"
-                    android:layout_marginBottom="8dp"/>
-
-                <Button
-                    android:id="@+id/btnChunky"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="🧱 Chunky Explosion"
-                    android:backgroundTint="@color/btn_chunky"/>
 
             </LinearLayout>
 
@@ -144,7 +55,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🎨 Explosion Styles"
+            android:text="Explosion Styles"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:attr/textColorPrimary"
@@ -153,48 +64,61 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             app:cardElevation="2dp"
             app:cardCornerRadius="8dp">
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:columnCount="2"
                 android:padding="12dp">
+
+                <Button
+                    android:id="@+id/btnFountain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="⛲ Fountain"
+                    android:backgroundTint="@color/btn_default"/>
 
                 <Button
                     android:id="@+id/btnScatter"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="🌟 Scatter (Radial)"
-                    android:backgroundTint="@color/btn_scatter"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="🌟 Scatter"
+                    android:backgroundTint="@color/btn_scatter"/>
 
                 <Button
-                    android:id="@+id/btnImplode"
-                    android:layout_width="match_parent"
+                    android:id="@+id/btnFall"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="🌀 Implode (Reverse)"
-                    android:backgroundTint="@color/btn_implode"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="💧 Fall"
+                    android:backgroundTint="@color/btn_implode"/>
 
                 <Button
-                    android:id="@+id/btnFloatUp"
-                    android:layout_width="match_parent"
+                    android:id="@+id/btnVortex"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="🎈 Float Up (Bubbles)"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:text="🌪️ Vortex"
                     android:backgroundTint="@color/btn_float"/>
 
-            </LinearLayout>
+            </GridLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Color Effects Section -->
+        <!-- Preset Configurations Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🎭 Color Effects"
+            android:text="Preset Configurations"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:attr/textColorPrimary"
@@ -203,7 +127,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             app:cardElevation="2dp"
             app:cardCornerRadius="8dp">
 
@@ -214,29 +138,45 @@
                 android:padding="12dp">
 
                 <Button
-                    android:id="@+id/btnGrayscale"
+                    android:id="@+id/btnGentle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="⚫ Grayscale"
-                    android:backgroundTint="@color/btn_grayscale"
+                    android:text="🌸 Gentle"
+                    android:backgroundTint="@color/btn_gentle"
                     android:layout_marginBottom="8dp"/>
 
                 <Button
-                    android:id="@+id/btnRandomColors"
+                    android:id="@+id/btnAggressive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="🌈 Random Colors"
-                    android:backgroundTint="@color/btn_random"/>
+                    android:text="💥 Aggressive"
+                    android:backgroundTint="@color/btn_aggressive"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnDust"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="✨ Dust"
+                    android:backgroundTint="@color/btn_dust"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btnChunky"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🧱 Chunky"
+                    android:backgroundTint="@color/btn_chunky"/>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Different View Types Section -->
+        <!-- Sample Views Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🎯 Different View Types"
+            android:text="Sample Views (Tap to Explode)"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:attr/textColorPrimary"
@@ -245,577 +185,203 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="20dp"
             app:cardElevation="2dp"
             app:cardCornerRadius="8dp">
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:columnCount="2"
                 android:padding="12dp">
 
-                <!-- Image Cards Grid -->
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="2"
-                    android:rowCount="2"
-                    android:layout_marginBottom="12dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sampleCard1"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="8dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/imageCard1"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_1"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/card_1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔥"
+                            android:textSize="40sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🔥"
-                                android:textSize="32sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fire"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Card 1"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"/>
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sampleCard2"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="8dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/imageCard2"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_2"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/card_2"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🌊"
+                            android:textSize="40sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🌿"
-                                android:textSize="32sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Water"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Card 2"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"/>
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sampleCard3"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="8dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/imageCard3"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_3"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/card_3"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🌿"
+                            android:textSize="40sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="💧"
-                                android:textSize="32sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Earth"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Card 3"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"/>
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sampleCard4"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="8dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/imageCard4"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_4"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/card_4"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💨"
+                            android:textSize="40sp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="⭐"
-                                android:textSize="32sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Air"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Card 4"
-                                android:textColor="@android:color/white"
-                                android:textStyle="bold"/>
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
-
-                </GridLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tap any card above to explode with SCATTER style"
-                    android:textSize="12sp"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="8dp"/>
-
-            </LinearLayout>
+            </GridLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- All 4 Explosion Styles Showcase -->
+        <!-- Helper Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnExplodeAll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="💥 Explode All"
+                android:backgroundTint="@color/btn_aggressive"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🔄 Reset"
+                android:backgroundTint="@color/btn_reset"
+                android:layout_marginStart="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Navigation Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🎬 All Explosion Styles Showcase"
+            android:text="More Demos"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="?android:attr/textColorPrimary"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"/>
 
-        <!-- ROW 1: FOUNTAIN STYLE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:cardElevation="3dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🌊 Fountain (Classic Arc)"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:layout_marginBottom="8dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <!-- Circle -->
-                    <View
-                        android:id="@+id/fountainCircle"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/circle_red"
-                        android:layout_margin="4dp"/>
-
-                    <!-- Icon Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/fountainIcon"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="12dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/fountain_icon_1"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🔥"
-                                android:textSize="36sp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Image Box -->
-                    <LinearLayout
-                        android:id="@+id/fountainImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/gradient_red"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_margin="4dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎯"
-                            android:textSize="28sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hit"
-                            android:textColor="@android:color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                    <!-- Rounded Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/fountainCard"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/fountain_card_1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="6dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🏆"
-                                android:textSize="28sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Win"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="2dp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- ROW 2: SCATTER STYLE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:cardElevation="3dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🌟 Scatter (Radial Burst)"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:layout_marginBottom="8dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <!-- Circle -->
-                    <View
-                        android:id="@+id/scatterCircle"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/circle_blue"
-                        android:layout_margin="4dp"/>
-
-                    <!-- Icon Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/scatterIcon"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="12dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/scatter_icon_1"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="💫"
-                                android:textSize="36sp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Image Box -->
-                    <LinearLayout
-                        android:id="@+id/scatterImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/gradient_orange"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_margin="4dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎨"
-                            android:textSize="28sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Art"
-                            android:textColor="@android:color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                    <!-- Rounded Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/scatterCard"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/scatter_card_1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="6dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🎪"
-                                android:textSize="28sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Fun"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="2dp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- ROW 3: IMPLODE STYLE -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:cardElevation="3dp"
-            app:cardCornerRadius="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🌀 Implode (Reverse Pull)"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:layout_marginBottom="8dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <!-- Circle -->
-                    <View
-                        android:id="@+id/implodeCircle"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/circle_green"
-                        android:layout_margin="4dp"/>
-
-                    <!-- Icon Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/implodeIcon"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="12dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/implode_icon_1"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🎭"
-                                android:textSize="36sp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Image Box -->
-                    <LinearLayout
-                        android:id="@+id/implodeImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/gradient_purple"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_margin="4dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎵"
-                            android:textSize="28sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Music"
-                            android:textColor="@android:color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                    <!-- Rounded Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/implodeCard"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/implode_card_1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="6dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="📸"
-                                android:textSize="28sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Photo"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="2dp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- ROW 4: FLOAT UP STYLE -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardElevation="3dp"
+            app:cardElevation="4dp"
             app:cardCornerRadius="12dp">
 
             <LinearLayout
@@ -824,131 +390,46 @@
                 android:orientation="vertical"
                 android:padding="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🎈 Float Up (Rising Bubbles)"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:layout_marginBottom="8dp"/>
-
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_marginBottom="8dp"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#673AB7">
 
-                    <!-- Circle -->
-                    <View
-                        android:id="@+id/floatCircle"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/circle_yellow"
-                        android:layout_margin="4dp"/>
+                    <Button
+                        android:id="@+id/btnAdvancedDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="📚 Advanced Demos"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#673AB7"/>
 
-                    <!-- Icon Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/floatIcon"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="12dp">
+                </com.google.android.material.card.MaterialCardView>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/floatup_icon_1"
-                            android:gravity="center">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#FF6F00">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="☁️"
-                                android:textSize="36sp"/>
+                    <Button
+                        android:id="@+id/btnPerformanceTest"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="⚡ Performance Test"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF6F00"/>
 
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Image Box -->
-                    <LinearLayout
-                        android:id="@+id/floatImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:background="@drawable/gradient_teal"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_margin="4dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🦋"
-                            android:textSize="28sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fly"
-                            android:textColor="@android:color/white"
-                            android:textSize="9sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                    <!-- Rounded Card -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/floatCard"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="4dp"
-                        app:cardElevation="4dp"
-                        app:cardCornerRadius="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/floatup_card_1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="6dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🌈"
-                                android:textSize="28sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sky"
-                                android:textColor="@android:color/white"
-                                android:textSize="10sp"
-                                android:textStyle="bold"
-                                android:layout_marginTop="2dp"/>
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
-
-        <!-- Reset Button -->
-        <Button
-            android:id="@+id/btnReset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🔄 Reset All Views"
-            android:backgroundTint="@color/btn_reset"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"/>
 
     </LinearLayout>
 

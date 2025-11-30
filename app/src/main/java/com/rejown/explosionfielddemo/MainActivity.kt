@@ -2,7 +2,6 @@ package com.rejown.explosionfielddemo
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var explosionField: ExplosionField
-    private var explosionCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,173 +28,164 @@ class MainActivity : AppCompatActivity() {
         // Attach explosion field to activity
         explosionField = ExplosionField.attach(this)
 
-        // Set up explosion listener
-        explosionField.explosionListener = object : ExplosionField.OnExplosionListener {
-            override fun onExplosionStart(view: View) {
-                explosionCount++
-            }
-
-            override fun onExplosionEnd(view: View) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "💥 Boom! Total explosions: $explosionCount",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        setupButtons()
-        setupCards()
-        setupExplosionStylesShowcase()
-        setupNavigationButtons()
+        setupExplosionStyles()
+        setupPresets()
+        setupSampleCards()
+        setupHelperButtons()
+        setupNavigation()
     }
 
-    private fun setupButtons() {
-        // Preset configurations
-        binding.btnDefault.setOnClickListener { view ->
-            explosionField.explode(view)
+    private fun setupExplosionStyles() {
+        // FOUNTAIN Style
+        binding.btnFountain.setOnClickListener { view ->
+            explosionField.explode(view, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.FOUNTAIN,
+                duration = 1500L
+            ))
+            showToast("Fountain explosion!")
         }
 
+        // SCATTER Style
+        binding.btnScatter.setOnClickListener { view ->
+            explosionField.explode(view, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.SCATTER,
+                duration = 1400L
+            ))
+            showToast("Scatter explosion!")
+        }
+
+        // FALL Style
+        binding.btnFall.setOnClickListener { view ->
+            explosionField.explode(view, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.FALL,
+                duration = 1600L
+            ))
+            showToast("Fall explosion!")
+        }
+
+        // VORTEX Style
+        binding.btnVortex.setOnClickListener { view ->
+            explosionField.explode(view, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.VORTEX,
+                duration = 1800L
+            ))
+            showToast("Vortex explosion!")
+        }
+    }
+
+    private fun setupPresets() {
         binding.btnGentle.setOnClickListener { view ->
             explosionField.explode(view, ExplosionConfig.GENTLE)
+            showToast("Gentle explosion")
         }
 
         binding.btnAggressive.setOnClickListener { view ->
             explosionField.explode(view, ExplosionConfig.AGGRESSIVE)
+            showToast("Aggressive explosion!")
         }
 
         binding.btnDust.setOnClickListener { view ->
             explosionField.explode(view, ExplosionConfig.DUST)
+            showToast("Dust explosion")
         }
 
         binding.btnChunky.setOnClickListener { view ->
             explosionField.explode(view, ExplosionConfig.CHUNKY)
+            showToast("Chunky explosion!")
+        }
+    }
+
+    private fun setupSampleCards() {
+        // Card 1: FOUNTAIN Style
+        binding.sampleCard1.setOnClickListener {
+            explosionField.explode(it, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.FOUNTAIN,
+                particleCount = ExplosionConfig.ParticleCount.HIGH,
+                duration = 1500L,
+                hapticFeedback = true
+            ))
         }
 
-        // Explosion styles
-        binding.btnScatter.setOnClickListener { view ->
-            explosionField.explode(view, ExplosionConfig(
+        // Card 2: SCATTER Style
+        binding.sampleCard2.setOnClickListener {
+            explosionField.explode(it, ExplosionConfig(
                 style = ExplosionConfig.ExplosionStyle.SCATTER,
-                duration = 1500L
+                particleCount = ExplosionConfig.ParticleCount.HIGH,
+                duration = 1400L,
+                hapticFeedback = true
             ))
         }
 
-        binding.btnImplode.setOnClickListener { view ->
-            explosionField.explode(view, ExplosionConfig(
-                style = ExplosionConfig.ExplosionStyle.IMPLODE,
-                duration = 1200L
+        // Card 3: FALL Style
+        binding.sampleCard3.setOnClickListener {
+            explosionField.explode(it, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.FALL,
+                particleCount = ExplosionConfig.ParticleCount.HIGH,
+                duration = 1600L,
+                hapticFeedback = true
             ))
         }
 
-        binding.btnFloatUp.setOnClickListener { view ->
-            explosionField.explode(view, ExplosionConfig(
-                style = ExplosionConfig.ExplosionStyle.FLOAT_UP,
-                duration = 1800L
+        // Card 4: VORTEX Style
+        binding.sampleCard4.setOnClickListener {
+            explosionField.explode(it, ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.VORTEX,
+                particleCount = ExplosionConfig.ParticleCount.HIGH,
+                duration = 1800L,
+                hapticFeedback = true
             ))
         }
+    }
 
-        // Color modes
-        binding.btnGrayscale.setOnClickListener { view ->
-            explosionField.explode(view, ExplosionConfig(
-                colorMode = ExplosionConfig.ColorMode.GRAYSCALE
-            ))
-        }
+    private fun setupHelperButtons() {
+        // Explode All button - uses different style for each card
+        binding.btnExplodeAll.setOnClickListener {
+            // Card 1: FOUNTAIN
+            binding.sampleCard1.postDelayed({
+                explosionField.explode(binding.sampleCard1, ExplosionConfig(
+                    style = ExplosionConfig.ExplosionStyle.FOUNTAIN,
+                    particleCount = ExplosionConfig.ParticleCount.HIGH,
+                    duration = 1500L
+                ))
+            }, 0)
 
-        binding.btnRandomColors.setOnClickListener { view ->
-            explosionField.explode(view, ExplosionConfig(
-                colorMode = ExplosionConfig.ColorMode.RANDOM,
-                particleCount = ExplosionConfig.ParticleCount.HIGH
-            ))
+            // Card 2: SCATTER
+            binding.sampleCard2.postDelayed({
+                explosionField.explode(binding.sampleCard2, ExplosionConfig(
+                    style = ExplosionConfig.ExplosionStyle.SCATTER,
+                    particleCount = ExplosionConfig.ParticleCount.HIGH,
+                    duration = 1400L
+                ))
+            }, 100)
+
+            // Card 3: FALL
+            binding.sampleCard3.postDelayed({
+                explosionField.explode(binding.sampleCard3, ExplosionConfig(
+                    style = ExplosionConfig.ExplosionStyle.FALL,
+                    particleCount = ExplosionConfig.ParticleCount.HIGH,
+                    duration = 1600L
+                ))
+            }, 200)
+
+            // Card 4: VORTEX
+            binding.sampleCard4.postDelayed({
+                explosionField.explode(binding.sampleCard4, ExplosionConfig(
+                    style = ExplosionConfig.ExplosionStyle.VORTEX,
+                    particleCount = ExplosionConfig.ParticleCount.HIGH,
+                    duration = 1800L
+                ))
+            }, 300)
+
+            showToast("💥 Boom!")
         }
 
         // Reset button
         binding.btnReset.setOnClickListener {
-            explosionCount = 0
             recreate()
         }
     }
 
-    private fun setupCards() {
-        // Different view types - Material Cards with scatter explosion
-        val cards = listOf(
-            binding.imageCard1,
-            binding.imageCard2,
-            binding.imageCard3,
-            binding.imageCard4
-        )
-
-        cards.forEach { card ->
-            card.setOnClickListener { view ->
-                explosionField.explode(view, ExplosionConfig(
-                    style = ExplosionConfig.ExplosionStyle.SCATTER,
-                    particleCount = ExplosionConfig.ParticleCount.HIGH,
-                    particleSize = ExplosionConfig.ParticleSize.MIXED,
-                    duration = 1200L,
-                    hapticFeedback = true
-                ))
-            }
-        }
-    }
-
-    private fun setupExplosionStylesShowcase() {
-        val fountainConfig = ExplosionConfig(
-            style = ExplosionConfig.ExplosionStyle.FOUNTAIN,
-            particleCount = ExplosionConfig.ParticleCount.MEDIUM,
-            particleSize = ExplosionConfig.ParticleSize.MIXED,
-            duration = 1500L,
-            hapticFeedback = true
-        )
-
-        val scatterConfig = ExplosionConfig(
-            style = ExplosionConfig.ExplosionStyle.SCATTER,
-            particleCount = ExplosionConfig.ParticleCount.HIGH,
-            particleSize = ExplosionConfig.ParticleSize.SMALL,
-            duration = 1400L,
-            hapticFeedback = true
-        )
-
-        val implodeConfig = ExplosionConfig(
-            style = ExplosionConfig.ExplosionStyle.IMPLODE,
-            particleCount = ExplosionConfig.ParticleCount.MEDIUM,
-            particleSize = ExplosionConfig.ParticleSize.LARGE,
-            duration = 1600L,
-            hapticFeedback = true
-        )
-
-        val floatConfig = ExplosionConfig(
-            style = ExplosionConfig.ExplosionStyle.FLOAT_UP,
-            particleCount = ExplosionConfig.ParticleCount.LOW,
-            particleSize = ExplosionConfig.ParticleSize.MIXED,
-            duration = 2000L,
-            hapticFeedback = true
-        )
-
-        // FOUNTAIN STYLE (Row 1)
-        binding.fountainCircle.setOnClickListener { explosionField.explode(it, fountainConfig) }
-        binding.fountainIcon.setOnClickListener { explosionField.explode(it, fountainConfig) }
-        binding.fountainImage.setOnClickListener { explosionField.explode(it, fountainConfig) }
-        binding.fountainCard.setOnClickListener { explosionField.explode(it, fountainConfig) }
-
-        // SCATTER STYLE (Row 2)
-        binding.scatterCircle.setOnClickListener { explosionField.explode(it, scatterConfig) }
-        binding.scatterIcon.setOnClickListener { explosionField.explode(it, scatterConfig) }
-        binding.scatterImage.setOnClickListener { explosionField.explode(it, scatterConfig) }
-        binding.scatterCard.setOnClickListener { explosionField.explode(it, scatterConfig) }
-
-        // IMPLODE STYLE (Row 3)
-        binding.implodeCircle.setOnClickListener { explosionField.explode(it, implodeConfig) }
-        binding.implodeIcon.setOnClickListener { explosionField.explode(it, implodeConfig) }
-        binding.implodeImage.setOnClickListener { explosionField.explode(it, implodeConfig) }
-        binding.implodeCard.setOnClickListener { explosionField.explode(it, implodeConfig) }
-
-        // FLOAT UP STYLE (Row 4)
-        binding.floatCircle.setOnClickListener { explosionField.explode(it, floatConfig) }
-        binding.floatIcon.setOnClickListener { explosionField.explode(it, floatConfig) }
-        binding.floatImage.setOnClickListener { explosionField.explode(it, floatConfig) }
-        binding.floatCard.setOnClickListener { explosionField.explode(it, floatConfig) }
-    }
-
-    private fun setupNavigationButtons() {
+    private fun setupNavigation() {
         binding.btnAdvancedDemo.setOnClickListener {
             startActivity(Intent(this, AdvancedDemoActivity::class.java))
         }
@@ -204,5 +193,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnPerformanceTest.setOnClickListener {
             startActivity(Intent(this, PerformanceTestActivity::class.java))
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

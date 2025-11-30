@@ -1,153 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/windowBackground"
-    android:id="@+id/main"
     android:fillViewport="true">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <!-- Header -->
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
+        <!-- Header -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚡ Performance Test"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"/>
-
-            <TextView
-                android:id="@+id/statsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Explosions: 0"
-                android:textSize="16sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:layout_marginTop="8dp"/>
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Control Buttons -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
-
-            <Button
-                android:id="@+id/btnExplodeAll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="💥 Explode All (16 views)"
-                android:backgroundTint="@color/btn_aggressive"
-                android:layout_marginBottom="8dp"/>
-
-            <Button
-                android:id="@+id/btnExplodeSequential"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🎯 Sequential Explosion"
-                android:backgroundTint="@color/btn_performance"
-                android:layout_marginBottom="8dp"/>
-
-            <Button
-                android:id="@+id/btnExplodeRandom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🎲 Random 10 Explosions"
-                android:backgroundTint="@color/btn_dust"
-                android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
 
-                <Button
-                    android:id="@+id/btnReset"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="🔄 Reset"
-                    android:backgroundTint="@color/btn_reset"
-                    android:layout_marginEnd="8dp"/>
+                    android:text="Performance Test"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"/>
 
-                <Button
-                    android:id="@+id/btnBack"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="← Back"/>
+                    android:text="Monitor explosion performance metrics"
+                    android:textSize="14sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="4dp"/>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Test Grid -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp">
-
-        <LinearLayout
+        <!-- Metrics Display -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tap any card to explode individually"
-                android:textSize="14sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:layout_marginBottom="12dp"/>
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Real-time Metrics"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:layout_marginBottom="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FPS"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"/>
+
+                        <TextView
+                            android:id="@+id/tvFps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/btn_performance"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Memory (MB)"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"/>
+
+                        <TextView
+                            android:id="@+id/tvMemory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/btn_aggressive"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active Animations"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"/>
+
+                        <TextView
+                            android:id="@+id/tvActiveAnimations"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/btn_scatter"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Explosions"
+                            android:textSize="12sp"
+                            android:textColor="?android:attr/textColorSecondary"/>
+
+                        <TextView
+                            android:id="@+id/tvTotalExplosions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/btn_dust"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Batch Test Controls -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Batch Tests"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2">
+
+                    <Button
+                        android:id="@+id/btnTest10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:text="10 Explosions"
+                        android:backgroundTint="@color/btn_gentle"/>
+
+                    <Button
+                        android:id="@+id/btnTest50"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:text="50 Explosions"
+                        android:backgroundTint="@color/btn_dust"/>
+
+                    <Button
+                        android:id="@+id/btnTestAll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:text="All Simultaneous"
+                        android:backgroundTint="@color/btn_aggressive"/>
+
+                    <Button
+                        android:id="@+id/btnTestSequential"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:text="Sequential"
+                        android:backgroundTint="@color/btn_performance"/>
+
+                </GridLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Test Grid -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Views (Tap to Explode)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
 
             <GridLayout
                 android:id="@+id/gridLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:columnCount="4"
-                android:rowCount="4"
-                android:alignmentMode="alignMargins"
-                android:useDefaultMargins="false"/>
+                android:padding="12dp"
+                android:alignmentMode="alignMargins"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Helper Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnClearMetrics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Clear Metrics"
+                android:backgroundTint="@color/btn_reset"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Reset All"
+                android:backgroundTint="@color/btn_chunky"
+                android:layout_marginStart="4dp"/>
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="← Back to Home"
+            android:layout_marginBottom="16dp"/>
 
-</LinearLayout>
+    </LinearLayout>
 
 </ScrollView>
