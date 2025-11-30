@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.rejown.explosionfielddemo"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.rejown.explosionfielddemo"
@@ -42,7 +40,12 @@ android {
 }
 
 dependencies {
+
     implementation(project(":explosionfield"))
+
+    // JitPack dependency format
+    // implementation("com.github.ahmmedrejowan:ExplosionField:1.0.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

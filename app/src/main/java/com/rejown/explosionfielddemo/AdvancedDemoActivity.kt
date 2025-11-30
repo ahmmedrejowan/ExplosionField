@@ -14,7 +14,6 @@ class AdvancedDemoActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityAdvancedDemoBinding.inflate(layoutInflater) }
     private lateinit var explosionField: ExplosionField
-    private var currentConfig: ExplosionConfig = ExplosionConfig()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,87 +31,95 @@ class AdvancedDemoActivity : AppCompatActivity() {
         setupCombinedEffects()
         setupSpecialOptions()
         setupUltimate()
-        setupDemoCards()
         setupHelperButtons()
     }
 
     private fun setupDurationVariations() {
         binding.btnSuperFast.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 duration = 500L,
                 shakeIntensity = 0.15f
             )
-            Toast.makeText(this, "Super Fast mode: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Super Fast explosion!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnSuperSlow.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 duration = 3000L,
                 shakeIntensity = 0.02f
             )
-            Toast.makeText(this, "Super Slow mode: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Super Slow explosion!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupParticleVariations() {
         binding.btnFewParticles.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 particleCount = ExplosionConfig.ParticleCount.LOW,
                 particleSize = ExplosionConfig.ParticleSize.LARGE
             )
-            Toast.makeText(this, "Few Large Particles: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Few Large Particles!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnManyParticles.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 particleCount = ExplosionConfig.ParticleCount.HIGH,
                 particleSize = ExplosionConfig.ParticleSize.TINY
             )
-            Toast.makeText(this, "Many Tiny Particles: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Many Tiny Particles!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupCombinedEffects() {
         binding.btnScatterGrayscale.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 style = ExplosionConfig.ExplosionStyle.SCATTER,
                 colorMode = ExplosionConfig.ColorMode.GRAYSCALE
             )
-            Toast.makeText(this, "Scatter + Grayscale: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Scatter + Grayscale!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnImplodeRandom.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 style = ExplosionConfig.ExplosionStyle.FALL,
                 colorMode = ExplosionConfig.ColorMode.RANDOM
             )
-            Toast.makeText(this, "Fall + Random Colors: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Fall + Random Colors!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnFloatTinted.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 style = ExplosionConfig.ExplosionStyle.VORTEX,
                 colorMode = ExplosionConfig.ColorMode.TINTED,
                 tintColor = Color.parseColor("#FF6B6B")
             )
-            Toast.makeText(this, "Vortex + Red Tint: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Vortex + Red Tint!", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupSpecialOptions() {
         binding.btnNoShake.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 shakeBeforeExplode = false
             )
-            Toast.makeText(this, "No Shake: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "No Shake Effect!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnWithHaptic.setOnClickListener {
-            currentConfig = ExplosionConfig(
+            val config = ExplosionConfig(
                 hapticFeedback = true,
                 duration = 800L
             )
-            Toast.makeText(this, "Haptic Feedback: Tap a demo card!", Toast.LENGTH_SHORT).show()
+            explodeAllCards(config)
+            Toast.makeText(this, "Haptic Feedback!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -133,27 +140,16 @@ class AdvancedDemoActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupDemoCards() {
-        binding.demoCard1.setOnClickListener { view ->
-            explosionField.explode(view, currentConfig)
-        }
-
-        binding.demoCard2.setOnClickListener { view ->
-            explosionField.explode(view, currentConfig)
-        }
-
-        binding.demoCard3.setOnClickListener { view ->
-            explosionField.explode(view, currentConfig)
-        }
-
-        binding.demoCard4.setOnClickListener { view ->
-            explosionField.explode(view, currentConfig)
-        }
-    }
-
     private fun setupHelperButtons() {
         binding.btnExplodeAll.setOnClickListener {
-            explodeAllCards(currentConfig)
+            val config = ExplosionConfig(
+                style = ExplosionConfig.ExplosionStyle.SCATTER,
+                colorMode = ExplosionConfig.ColorMode.RANDOM,
+                particleCount = ExplosionConfig.ParticleCount.HIGH,
+                duration = 1500L
+            )
+            explodeAllCards(config)
+            Toast.makeText(this, "Exploding all cards!", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnReset.setOnClickListener {
