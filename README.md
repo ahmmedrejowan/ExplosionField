@@ -1,240 +1,125 @@
-# ExplosionField
+<p align="center"><img src="https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/logo.png" width="100px" align="center"/></p>
+<h1 align="center">ExplosionField</h1> 
+<h3 align="center"><b>A powerful and customizable Android explosion animation library with multiple explosion styles</b></h3>
 
-[![](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com/)
-[![](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org/)
-[![](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](LICENSE)
+<p align="center"> <a href="https://www.android.com"><img src="https://img.shields.io/badge/platform-Android-yellow.svg" alt="platform"></a>
+ <a href="https://android-arsenal.com/api?level=21"><img src="https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat" alt="API"></a> <a href="https://jitpack.io/#ahmmedrejowan/ExplosionField/"><img src="https://jitpack.io/v/ahmmedrejowan/ExplosionField.svg" alt="JitPack"></a> <a href="https://github.com/ahmmedrejowan/ExplosionField/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ahmmedrejowan/ExplosionField" alt="GitHub license"></a> </p>
 
-**ExplosionField** is a modern Kotlin library that creates explosive particle effects for Android views. A complete rewrite of the original [tyrantgit/ExplosionField](https://github.com/tyrantgit/ExplosionField) with improved performance, extensive customization options, and multiple explosion styles.
+ <p align="center"> <a href="https://github.com/ahmmedrejowan/ExplosionField/issues"><img src="https://img.shields.io/github/issues/ahmmedrejowan/ExplosionField" alt="GitHub issues"></a> <a href="https://github.com/ahmmedrejowan/ExplosionField/network"><img src="https://img.shields.io/github/forks/ahmmedrejowan/ExplosionField" alt="GitHub forks"></a> <a href="https://github.com/ahmmedrejowan/ExplosionField/stargazers"><img src="https://img.shields.io/github/stars/ahmmedrejowan/ExplosionField" alt="GitHub stars"></a> <a href="https://github.com/ahmmedrejowan/ExplosionField/graphs/contributors"> <img src="https://img.shields.io/github/contributors/ahmmedrejowan/ExplosionField" alt="GitHub contributors"></a>   </p>
 
-![Demo](demo.gif)
+## Table of Contents
+
+- [Purpose](#purpose)
+- [Features](#features)
+- [Demo](#demo)
+- [Prerequisites](#prerequisites)
+- [Dependency](#dependency)
+- [Usage](#usage)
+- [Customization](#customization)
+- [Attributes](#attribute)
+- [Notes](#notes)
+- [Contribute](#contribute)
+- [License](#license)
+
+## Purpose
 
 ## Features
 
-- **🚀 Performance Optimized**: 30-40% faster than the original with optimized physics calculations
-- **🎨 4 Explosion Styles**: Fountain, Scatter, Implode, Float Up
-- **🎭 4 Color Modes**: Original, Grayscale, Tinted, Random
-- **⚙️ Highly Configurable**: Customize particle count, size, duration, interpolators, and more
-- **📦 Preset Configurations**: Quick access to GENTLE, AGGRESSIVE, DUST, CHUNKY presets
-- **🎯 Simple API**: One-liner setup, backwards compatible with original library
-- **✨ Modern Kotlin**: Data classes, extension functions, null safety
-- **📱 Lifecycle Callbacks**: onExplosionStart/End listeners
-- **🎪 Optional Effects**: Haptic feedback, auto view removal
+## Demo
 
-## Installation
+| Gif                                                                                            | Gif                                                                                            | 
+|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/demo_1.gif) | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/demo_2.gif) |
 
-### Gradle (Coming Soon)
 
-```gradle
+| Shots                                                                                          | Shots                                                                                          | 
+|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_1.jpg) | ![Shot1](https://raw.githubusercontent.com/ahmmedrejowan/ExplosionField/main/files/shot_2.jpg) | 
+
+## Prerequisites
+
+### Kotlin DSL
+
+``` Kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven{
+            url = uri("https://jitpack.io")
+        }
+    }
+}
+```
+
+``` groovy
+dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+## Dependency
+
+Add this to your module's `build.gradle.kts` file (latest
+version <a href="https://jitpack.io/#ahmmedrejowan/ExplosionField"><img src="https://jitpack.io/v/ahmmedrejowan/ExplosionField.svg" alt="JitPack"></a>):
+
+``` kotlin
 dependencies {
-    implementation 'com.rejowan:explosionfield:1.0.0'
+    ...
+    implementation("com.github.ahmmedrejowan:ExplosionField:1.0.0")
 }
 ```
 
-### Manual
-
-Clone this repository and include the `explosionfield` module in your project.
-
-## Quick Start
-
-### Basic Usage
-
-```kotlin
-// Attach to activity
-val explosionField = ExplosionField.attach(activity)
-
-// Explode a view with default settings
-explosionField.explode(myButton)
-```
-
-That's it! The view will shake, fade out, and explode into particles.
-
-## Advanced Usage
-
-### Preset Configurations
-
-```kotlin
-// Gentle, slow explosion
-explosionField.explode(view, ExplosionConfig.GENTLE)
-
-// Fast, intense explosion
-explosionField.explode(view, ExplosionConfig.AGGRESSIVE)
-
-// Many tiny particles
-explosionField.explode(view, ExplosionConfig.DUST)
-
-// Fewer, larger particles
-explosionField.explode(view, ExplosionConfig.CHUNKY)
-```
-
-### Explosion Styles
-
-```kotlin
-// Scatter radially outward
-explosionField.explode(view, ExplosionConfig(
-    style = ExplosionConfig.ExplosionStyle.SCATTER
-))
-
-// Implode inward (reverse explosion)
-explosionField.explode(view, ExplosionConfig(
-    style = ExplosionConfig.ExplosionStyle.IMPLODE
-))
-
-// Float gently upward
-explosionField.explode(view, ExplosionConfig(
-    style = ExplosionConfig.ExplosionStyle.FLOAT_UP
-))
-```
-
-### Color Effects
-
-```kotlin
-// Grayscale particles
-explosionField.explode(view, ExplosionConfig(
-    colorMode = ExplosionConfig.ColorMode.GRAYSCALE
-))
-
-// Random bright colors
-explosionField.explode(view, ExplosionConfig(
-    colorMode = ExplosionConfig.ColorMode.RANDOM
-))
-
-// Tinted with custom color
-explosionField.explode(view, ExplosionConfig(
-    colorMode = ExplosionConfig.ColorMode.TINTED,
-    tintColor = Color.RED
-))
-```
-
-### Full Customization
-
-```kotlin
-explosionField.explode(view, ExplosionConfig(
-    duration = 2000L,                                     // 2 seconds
-    particleCount = ExplosionConfig.ParticleCount.HIGH,   // 400 particles
-    particleSize = ExplosionConfig.ParticleSize.LARGE,    // Bigger particles
-    style = ExplosionConfig.ExplosionStyle.SCATTER,
-    colorMode = ExplosionConfig.ColorMode.RANDOM,
-    interpolator = DecelerateInterpolator(),
-    shakeIntensity = 0.1f,                                // More shake
-    hapticFeedback = true,                                // Vibrate on explosion
-    removeViewAfterExplosion = true                       // Remove from parent
-))
-```
-
-### Lifecycle Callbacks
-
-```kotlin
-explosionField.explosionListener = object : ExplosionField.OnExplosionListener {
-    override fun onExplosionStart(view: View) {
-        Log.d("Explosion", "Started!")
-    }
-
-    override fun onExplosionEnd(view: View) {
-        Log.d("Explosion", "Finished!")
-        // Clean up, show next view, etc.
-    }
+``` groovy
+dependencies {
+    ...
+    implementation 'com.github.ahmmedrejowan:ExplosionField:1.0.0'
 }
 ```
 
-## Configuration Options
+## Usage
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `duration` | Long | 1024ms | Total animation duration |
-| `particleCount` | ParticleCount | MEDIUM (225) | LOW (100), MEDIUM (225), HIGH (400) |
-| `particleSize` | ParticleSize | MIXED | TINY, SMALL, MIXED, LARGE |
-| `style` | ExplosionStyle | FOUNTAIN | FOUNTAIN, SCATTER, IMPLODE, FLOAT_UP |
-| `colorMode` | ColorMode | ORIGINAL | ORIGINAL, GRAYSCALE, TINTED, RANDOM |
-| `interpolator` | Interpolator | AccelerateInterpolator(0.6f) | Any Android interpolator |
-| `expandBounds` | Int | 32dp | Extra space for particles |
-| `shakeBeforeExplode` | Boolean | true | Shake view before explosion |
-| `shakeDuration` | Long | 150ms | Duration of shake |
-| `shakeIntensity` | Float | 0.05f | Intensity of shake (0-1) |
-| `fadeOutStart` | Float | 0.7f | When particles start fading (0-1) |
-| `tintColor` | Int | Black | Color for TINTED mode |
-| `removeViewAfterExplosion` | Boolean | false | Remove view from parent |
-| `hapticFeedback` | Boolean | false | Trigger haptic feedback |
+## Customization
 
-## Performance
+## Attribute
 
-**Improvements over original:**
-- ✅ 30-40% faster particle updates (removed `Math.pow()`)
-- ✅ Optimized bitmap sampling
-- ✅ Smart dirty region invalidation
-- ✅ Configurable particle density (100-400 particles)
+## Notes
 
-**Benchmarks** (on Pixel 6):
-- Low (100 particles): ~60 FPS
-- Medium (225 particles): ~60 FPS
-- High (400 particles): ~55 FPS
+## Inspiration and Credit
 
-## Comparison with Original
+## Contribute
 
-| Feature | Original | ExplosionField v1.0 |
-|---------|----------|---------------------|
-| Language | Java | Kotlin |
-| Performance | Baseline | +30-40% faster |
-| Explosion Styles | 1 | 4 |
-| Color Modes | 1 | 4 |
-| Particle Count | Fixed (225) | Configurable (100-400) |
-| Configuration | Hardcoded | Full config system |
-| Callbacks | None | Start/End listeners |
-| Min SDK | Unknown | API 24 |
+Please fork this repository and contribute back
+using [pull requests](https://github.com/ahmmedrejowan/ExplosionField/pulls).
 
-## How It Works
+Any contributions, large or small, major features, bug fixes, are welcomed and appreciated.
 
-ExplosionField works by:
-1. Capturing the view as a bitmap
-2. Sampling colors from a grid (10×10 to 20×20)
-3. Generating particles with physics properties
-4. Animating particles following parabolic/radial motion
-5. Fading out particles over time
+Let me know which features you want in the future in `Request Feature` tab.
 
-For detailed technical explanation, see [how-it-works.md](plan/how-it-works.md).
-
-## Sample App
-
-Run the `app` module to see all features in action:
-- Preset configurations
-- All 4 explosion styles
-- Color effects
-- Custom configurations
+If this project helps you a little bit, then give a to Star ⭐ the Repo.
 
 ## License
 
+* [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+
 ```
-Copyright 2025 Rejowan
+Copyright 2025 ahmmedrejowan
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-   http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
 ```
-
-## Credits
-
-Original library by [tyrantgit](https://github.com/tyrantgit/ExplosionField)
-
-Rewritten and enhanced by [Rejowan](https://github.com/rejowan)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Changelog
-
-### Version 1.0.0 (2025)
-- Complete Kotlin rewrite
-- 4 explosion styles (Fountain, Scatter, Implode, Float Up)
-- 4 color modes (Original, Grayscale, Tinted, Random)
-- Configuration system with presets
-- Performance optimizations
-- Lifecycle callbacks
-- Modern API design
